@@ -10,12 +10,29 @@ import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+    var viewController:ViewController?
     var window: UIWindow?
-
+    var isFirstInstall :Bool?
+    var  mainNavgationController:UINavigationController?
+//    var loginView : 
+    
+//    var  newFeatureController:NewfeaturesController?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
+      
+        let user = NSUserDefaults.standardUserDefaults()
+        self.isFirstInstall =  user.objectForKey("zhang_dongdong")?.boolValue
+        self.window = UIWindow()
+        self.window?.frame = UIScreen.mainScreen().bounds
+        if (self.isFirstInstall != true) {
+           self.mainNavgationController = UINavigationController(rootViewController: NewfeaturesController())
+        }else{
+            self.mainNavgationController = UINavigationController(rootViewController: LoginViewController())
+        }
+        self.window?.rootViewController = self.mainNavgationController
+        self.window?.makeKeyAndVisible()
+        user.setBool(true, forKey: "zhang_dongdong")
+        user.synchronize()
         return true
     }
 
