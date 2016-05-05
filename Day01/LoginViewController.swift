@@ -85,14 +85,12 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
         self.sendBlock = sendValueClosure
     }
 
-
     func login(){
         
-        if self.username?.text == nil || self.password?.text == nil {
-            return
+        if (self.username?.text != nil && self.password?.text != nil ){
+            print("\(self.username?.text)---\(self.password?.text)")
+            self.navigationController?.pushViewController(ViewController(), animated: true)
         }
-        
-        self.navigationController?.pushViewController(ViewController(), animated: true)
     }
     
 
