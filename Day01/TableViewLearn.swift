@@ -24,9 +24,9 @@ class TableViewLearn: UIViewController,UITableViewDataSource,UITableViewDelegate
     }
     
     func  editorButtonSet (){
-       self.navButton  = UIButton()
+        self.navButton  = UIButton()
         self.navButton.frame = CGRectMake(0, 0, 50, 60)
-       self.navButton.setTitle("Editor", forState: UIControlState.Normal)
+        self.navButton.setTitle("Editor", forState: UIControlState.Normal)
         self.navButton.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
         self.navButton.addTarget(self, action: #selector(TableViewLearn.editorButtonDidClick(_:)), forControlEvents: UIControlEvents.TouchUpInside)
          let rightItem = UIBarButtonItem()
@@ -62,18 +62,31 @@ class TableViewLearn: UIViewController,UITableViewDataSource,UITableViewDelegate
     }
     
     func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        
         return true
     }
     
     
+    func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return true
+    }
+    
+//    func tableView(tableView: UITableView, moveRowAtIndexPath sourceIndexPath: NSIndexPath, toIndexPath destinationIndexPath: NSIndexPath) {
+//        print("---\(sourceIndexPath.row)---->\(destinationIndexPath.row)")
+//        tableView.moveRowAtIndexPath(sourceIndexPath, toIndexPath: destinationIndexPath)
+//    }
+//    func moveRowAtIndexPath(indexPath: NSIndexPath, toIndexPath newIndexPath: NSIndexPath){
+//    
+//    }
+    
+    
+    
+    
      func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
-            // Delete the row from the data source
             dataSource.removeAtIndex(indexPath.row)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+            
         }
     }
 
@@ -89,7 +102,7 @@ class TableViewLearn: UIViewController,UITableViewDataSource,UITableViewDelegate
             }.flatMap{
              $0
         }
-    
+
         print("brr\(brr.debugDescription)")
         
     }

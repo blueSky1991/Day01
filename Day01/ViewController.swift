@@ -45,11 +45,11 @@ class ViewController: UIViewController {
 
         
         self.tapEvent = UITapGestureRecognizer()
-        self.tapEvent.addTarget(self, action: "tapEvent:")
+        self.tapEvent.addTarget(self, action: #selector(ViewController.tapEvent(_:)))
         self.tapEvent.numberOfTapsRequired = 1
         self.labelNum.addGestureRecognizer(self.tapEvent!)
         
-        self.timer  = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "timerFireMethod:", userInfo: nil, repeats: true)
+        self.timer  = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(ViewController.timerFireMethod(_:)), userInfo: nil, repeats: true)
         self.timer.fire()
         
         
@@ -58,7 +58,7 @@ class ViewController: UIViewController {
         self.transButton!.backgroundColor = UIColor.lightGrayColor()
         self.transButton.setTitle("跳转", forState: UIControlState.Normal)
         self.transButton.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
-        self.transButton.addTarget(self, action: "transButtonClick:", forControlEvents: UIControlEvents.TouchUpInside)
+        self.transButton.addTarget(self, action: #selector(ViewController.transButtonClick(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         self.view.addSubview(self.transButton!)
 
     

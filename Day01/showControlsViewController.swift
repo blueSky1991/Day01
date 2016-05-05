@@ -59,7 +59,7 @@ class showControlsViewController: UIViewController,UITextFieldDelegate {
         self.slider = UISlider()
         self.slider.frame = CGRectMake(60, 300, 300 , 20)
         self.slider.maximumValue = self.maxValue
-        self.slider.addTarget(self, action:"sliderValueChang:", forControlEvents: UIControlEvents.ValueChanged)
+        self.slider.addTarget(self, action:#selector(showControlsViewController.sliderValueChang(_:)), forControlEvents: UIControlEvents.ValueChanged)
         self.view.addSubview(self.slider!)
         
         
@@ -68,7 +68,7 @@ class showControlsViewController: UIViewController,UITextFieldDelegate {
         self.transButton!.backgroundColor = UIColor.lightGrayColor()
         self.transButton.setTitle("跳转", forState: UIControlState.Normal)
         self.transButton.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
-        self.transButton.addTarget(self, action: "transButtonClick:", forControlEvents: UIControlEvents.TouchUpInside)
+        self.transButton.addTarget(self, action: #selector(showControlsViewController.transButtonClick(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         self.view.addSubview(self.transButton!)
         
         
