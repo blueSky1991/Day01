@@ -11,7 +11,7 @@ import UIKit
 class TableViewLearn: UIViewController,UITableViewDataSource,UITableViewDelegate {
     
     var tableView:UITableView!
-    var dataSource:[String] = ["xiyouji","shiuhuzhuan","honglongmeng","sanguoyanyi"]
+    var dataSource:[String] = ["西游记","水浒传","红楼梦","三国演义"]
     let width =  UIScreen.mainScreen().bounds.size.width
     let height =  UIScreen.mainScreen().bounds.size.height
     override func viewDidLoad() {
