@@ -11,6 +11,8 @@ import UIKit
 class TableViewLearn: UIViewController,UITableViewDataSource,UITableViewDelegate {
     
     var tableView:UITableView!
+    var navButton :UIButton!
+    
     var dataSource:[String] = ["西游记","水浒传","红楼梦","三国演义"]
     let width =  UIScreen.mainScreen().bounds.size.width
     let height =  UIScreen.mainScreen().bounds.size.height
@@ -18,7 +20,23 @@ class TableViewLearn: UIViewController,UITableViewDataSource,UITableViewDelegate
         super.viewDidLoad()
         self.title = "DataSourceCount"
         self.setupInit()
-        self.test()
+        self.editorButtonSet()
+    }
+    
+    func  editorButtonSet (){
+       self.navButton  = UIButton()
+        self.navButton.frame = CGRectMake(0, 0, 50, 60)
+       self.navButton.setTitle("Editor", forState: UIControlState.Normal)
+        self.navButton.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
+        self.navButton.addTarget(self, action: #selector(TableViewLearn.editorButtonDidClick(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+         let rightItem = UIBarButtonItem()
+        rightItem.customView = self.navButton
+        self.navigationItem.rightBarButtonItem = rightItem
+    }
+    
+    func editorButtonDidClick(btn: UIButton) {
+//        print("editorButtonDidClick")
+        self.tableView.setEditing(!self.tableView.editing, animated: true)
     }
     
     func setupInit(){
@@ -42,6 +60,23 @@ class TableViewLearn: UIViewController,UITableViewDataSource,UITableViewDelegate
        cell?.textLabel?.text = dataSource[indexPath.row]
        return cell!
     }
+    
+    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        
+        return true
+    }
+    
+    
+     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if editingStyle == .Delete {
+            // Delete the row from the data source
+            dataSource.removeAtIndex(indexPath.row)
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+        } else if editingStyle == .Insert {
+            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+        }
+    }
+
     
     func test(){
         let  arr  = [1,2,5,8]
